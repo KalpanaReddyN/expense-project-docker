@@ -12,7 +12,7 @@ USER expense
 CMD ["node", "index.js"]    
 
 
-# before best practices implemneted
+# before best practices implemented
 # FROM node:20
 # EXPOSE 8080
 # ENV DB_HOST="mysql"           
