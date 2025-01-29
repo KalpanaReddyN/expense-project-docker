@@ -2,23 +2,27 @@ version: "3"
 networks:
   expense:
 volumes:
-  mysql:  # docker volume create mysql
+  mysql:                                  # docker volume create mysql
 services:
   mysql:
-    image: joindevops/mysql:v1
-    container_name: mysql # --name mysql
+    image: kalpanareddyneelapu/mysql:v1
+    container_name: mysql                   # --name mysql
     volumes:
-    - mysql:/var/lib/mysql # -v mysql:/var/lib/mysql
+    - mysql:/var/lib/mysql                  # -v mysql:/var/lib/mysql
   backend:
-    image: joindevops/backend:v1
+    image: kalpanareddyneelapu//backend:v1
     container_name: backend
     command: sh -c "sleep 5 && node /opt/server/index.js"
     depends_on:
     - mysql
   frontend:
-    image: joindevops/frontend:v1
+    image: kalpanareddyneelapu//frontend:v1
     container_name: frontend
     ports:
     - 80:80
     depends_on:
     - backend
+
+# mysql stores its data in /var/lib/mysql folder so mysql: is we created the volume right that it is.
+# sleep 5 && node /opt/server/index.js means when mysql conatiner is created follows the backend container creation.
+# so there will be no time to connect the backend to mysql so we gave sleep 5 to get some time to connect.
